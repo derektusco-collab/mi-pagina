@@ -11,13 +11,12 @@
         margin: 0;
         padding: 0;
         height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        overflow: hidden; /* Importante para que no haga scroll */
         background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
         background-size: 400% 400%;
         animation: gradientAnimation 10s ease infinite;
         font-family: Arial, sans-serif;
+        position: relative;
     }
 
     @keyframes gradientAnimation {
@@ -26,40 +25,61 @@
         100% { background-position: 0% 50%; }
     }
 
-    .contenedor {
-        text-align: center;
-        animation: fadeIn 1.5s ease;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-
-    /* ⭐ Movimiento de lado a lado (reemplaza el rebote vertical) */
-    @keyframes bounceHorizontal {
-        0%   { transform: translateX(-30px); }
-        50%  { transform: translateX(30px); }
-        100% { transform: translateX(-30px); }
-    }
-
-    img {
+    /* Imagen flotante */
+    #imagenRebote {
+        position: absolute;
         width: 85vw;
         max-width: 400px;
         border-radius: 20px;
         box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-        animation: bounceHorizontal 2s infinite ease-in-out;
     }
 </style>
 
 </head>
 <body>
 
-<div class="contenedor">
-    <!-- ⭐⭐⭐ AQUÍ REEMPLAZAS TU IMAGEN ⭐⭐⭐ -->
-    <img src="https://i.ibb.co/twnssWpT/IMG-20251027-000859-446.jpg" alt="Imagen">
-    <!-- ⭐⭐⭐ FIN DEL LUGAR DE LA IMAGEN ⭐⭐⭐ -->
-</div>
+<!-- ⭐⭐⭐ TU IMAGEN ⭐⭐⭐ -->
+<img id="imagenRebote" src="https://i.ibb.co/twnssWpT/IMG-20251027-000859-446.jpg" alt="Imagen">
+<!-- ⭐⭐⭐ FIN IMAGEN ⭐⭐⭐ -->
+
+<!-- ⭐ SCRIPT DEL REBOTE REAL ⭐ -->
+<script>
+    const img = document.getElementById("imagenRebote");
+
+    let x = 50;  // posición inicial
+    let y = 50;
+    let velX = 2; // velocidad horizontal
+    let velY = 2; // velocidad vertical
+
+    function moverImagen() {
+        const anchoPantalla = window.innerWidth;
+        const altoPantalla = window.innerHeight;
+        const anchoImg = img.offsetWidth;
+        const altoImg = img.offsetHeight;
+
+        // mover
+        x += velX;
+        y += velY;
+
+        // colisión horizontal
+        if (x <= 0 || x + anchoImg >= anchoPantalla) {
+            velX *= -1;
+        }
+
+        // colisión vertical
+        if (y <= 0 || y + altoImg >= altoPantalla) {
+            velY *= -1;
+        }
+
+        // aplicar movimiento
+        img.style.left = x + "px";
+        img.style.top = y + "px";
+
+        requestAnimationFrame(moverImagen);
+    }
+
+    moverImagen();
+</script>
 
 </body>
 </html>
