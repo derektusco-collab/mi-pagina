@@ -36,17 +36,19 @@
         to { opacity: 1; }
     }
 
+    /* ⭐ Movimiento de lado a lado (reemplaza el rebote vertical) */
+    @keyframes bounceHorizontal {
+        0%   { transform: translateX(-30px); }
+        50%  { transform: translateX(30px); }
+        100% { transform: translateX(-30px); }
+    }
+
     img {
         width: 85vw;
         max-width: 400px;
         border-radius: 20px;
         box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-        animation: bounce 3s infinite ease-in-out;
-    }
-
-    @keyframes bounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-200px); }
+        animation: bounceHorizontal 2s infinite ease-in-out;
     }
 </style>
 
