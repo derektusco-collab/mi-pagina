@@ -46,10 +46,12 @@
 <script>
     const img = document.getElementById("imagenRebote");
 
-    let x = 50;  // posición inicial
+    let x = 50;  
     let y = 50;
-    let velX = 2; // velocidad horizontal
-    let velY = 2; // velocidad vertical
+
+    /* ⭐ Movimiento lento de esquina a esquina ⭐ */
+    let velX = 0.4;
+    let velY = 0.4;
 
     function moverImagen() {
         const anchoPantalla = window.innerWidth;
@@ -57,21 +59,12 @@
         const anchoImg = img.offsetWidth;
         const altoImg = img.offsetHeight;
 
-        // mover
         x += velX;
         y += velY;
 
-        // colisión horizontal
-        if (x <= 0 || x + anchoImg >= anchoPantalla) {
-            velX *= -1;
-        }
+        if (x <= 0 || x + anchoImg >= anchoPantalla) velX *= -1;
+        if (y <= 0 || y + altoImg >= altoPantalla) velY *= -1;
 
-        // colisión vertical
-        if (y <= 0 || y + altoImg >= altoPantalla) {
-            velY *= -1;
-        }
-
-        // aplicar movimiento
         img.style.left = x + "px";
         img.style.top = y + "px";
 
