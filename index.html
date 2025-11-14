@@ -1,11 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Mi Página</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi Página Interactiva</title>
+
+<!-- Fondo animado -->
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+        background-size: 400% 400%;
+        animation: gradientAnimation 10s ease infinite;
+        font-family: Arial, sans-serif;
+    }
+
+    @keyframes gradientAnimation {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .contenedor {
+        text-align: center;
+        animation: fadeIn 1.5s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    img {
+        width: 85vw;
+        max-width: 400px;
+        border-radius: 20px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        animation: bounce 2s infinite ease-in-out;
+    }
+
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+</style>
+
 </head>
 <body>
-  <h1>Bienvenido/a</h1>
-  <p>Esta es una página creada con GitHub Pages.</p>
+
+<div class="contenedor">
+    <!-- ⭐⭐⭐ AQUÍ REEMPLAZAS TU IMAGEN ⭐⭐⭐ -->
+    <img src="AQUI_PONES_EL_LINK_DE_TU_IMAGEN" alt="Imagen">
+    <!-- ⭐⭐⭐ FIN DEL LUGAR DE LA IMAGEN ⭐⭐⭐ -->
+</div>
+
 </body>
 </html>
