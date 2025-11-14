@@ -5,27 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mi Página Interactiva</title>
 
-<!-- Fondo animado -->
 <style>
+    /* --- FONDO DE VIDEO --- */
+    #videoFondo {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        z-index: -2;
+    }
+
+    /* --- ESTILO GENERAL --- */
     body {
         margin: 0;
         padding: 0;
-        height: 100vh;
-        overflow: hidden; /* Importante para que no haga scroll */
-        background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
-        background-size: 400% 400%;
-        animation: gradientAnimation 10s ease infinite;
+        overflow: hidden;
         font-family: Arial, sans-serif;
         position: relative;
     }
 
-    @keyframes gradientAnimation {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-
-    /* Imagen flotante */
+    /* --- IMAGEN FLOTANTE REBOTANDO --- */
     #imagenRebote {
         position: absolute;
         width: 85vw;
@@ -38,20 +39,25 @@
 </head>
 <body>
 
+<!-- ⭐⭐⭐ VIDEO DE FONDO ⭐⭐⭐ -->
+<video id="videoFondo" autoplay muted loop>
+    <source src="TU_VIDEO_AQUI.mp4" type="video/mp4">
+</video>
+<!-- ⭐⭐⭐ FIN VIDEO ⭐⭐⭐ -->
+
 <!-- ⭐⭐⭐ TU IMAGEN ⭐⭐⭐ -->
-<img id="imagenRebote" src="https://i.ibb.co/twnssWpT/IMG-20251027-000859-446.jpg" alt="Imagen">
+<img id="imagenRebote" src="https://i.ibb.co/twnssWpT/IMG-20251027-000859-446.jpg">
 <!-- ⭐⭐⭐ FIN IMAGEN ⭐⭐⭐ -->
 
-<!-- ⭐ SCRIPT DEL REBOTE REAL ⭐ -->
 <script>
     const img = document.getElementById("imagenRebote");
 
-    let x = 50;  
+    let x = 50;
     let y = 50;
 
-    /* ⭐ Movimiento lento de esquina a esquina ⭐ */
-    let velX = 2;
-    let velY = 2;
+    /* ⭐ Movimiento suave y lento para recorrer toda la pantalla ⭐ */
+    let velX = 0.25;
+    let velY = 0.25;
 
     function moverImagen() {
         const anchoPantalla = window.innerWidth;
